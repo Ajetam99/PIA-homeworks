@@ -1,10 +1,28 @@
 body {
 	background-image: url("images/background.png");
+	padding: 0px;
+	margin: 0px;
+	font-family: arial;
+	font-size: 12pt;
 }
+
+.sve {
+	display: flex;
+	width: 55%;
+	margin: auto;
+}
+
+.sidebar {
+	max-width: 300px;
+	background: #A2B964;
+	width: ;
+}
+
 .sidebar img {
-	width: 100px;
-	height: 150px;
+	width: 100%;
+	height: auto;
 }
+
 h1 {
 	size: 24pt;
 	font-family: "Times New Roman",Times,serif;
@@ -13,6 +31,8 @@ h1 {
 }
 
 .container {
+	background: #D9E1D2;
+	min-width: 300px;
 	padding: 5%; 
 	display:flex;
 	flex-direction: column;
@@ -36,4 +56,18 @@ h1 {
 .quotes {
 	font-size: 13pt;
 	font-family: "Times New Roman",Times,serif;
+}
+
+#rating {
+	background-image: url("images/rbg.png");
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+#futer {
+	width: 55%;
+	background: #A2B964;
+	margin:auto;
+	text-align: center;
 }

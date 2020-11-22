@@ -13,14 +13,15 @@ body {
 }
 
 .sidebar {
+	overflow-wrap: break-word;
 	max-width: 300px;
 	background: #A2B964;
-	width: ;
 }
 
 .sidebar img {
 	width: 100%;
 	height: auto;
+	
 }
 
 h1 {
@@ -70,4 +71,26 @@ h1 {
 	background: #A2B964;
 	margin:auto;
 	text-align: center;
+}
+
+.sidebar ul {
+	margin-left: 15;
+	padding: 0px;
+	font-weight: bold;
+}
+
+.sidebar dt {
+	margin-right: 5px;
+	margin-left: 15px;
+	font-weight: bold;
+}
+
+.sidebar dd {
+	margin-bottom: 15px;
+	margin-right: 5px;
+}
+
+#w3c {
+	position: absolute;
+	right: 0px;
 }

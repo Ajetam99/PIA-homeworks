@@ -13,17 +13,27 @@ h1 {
 }
 
 .container {
+	padding: 5%; 
 	display:flex;
 	flex-direction: column;
 }
 
 .container div{
+	align-self: center;
+	width: 100%;
 	border: 2px #cccccc solid;
-	background: white;
+	background: #FFFFFF;
 	border-radius: 12px;
 	padding: 16px;
 }
 
+.container img{
+	float: left;
+	padding: 5px;
+	
+}
+
 .quotes {
-	font-size: 12pt;
+	font-size: 13pt;
+	font-family: "Times New Roman",Times,serif;
 }

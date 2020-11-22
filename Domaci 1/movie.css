@@ -1,7 +1,7 @@
 body {
 	background-image: url("images/background.png");
 }
-.cover img {
+.sidebar img {
 	width: 100px;
 	height: 150px;
 }
@@ -10,4 +10,20 @@ h1 {
 	font-family: "Times New Roman",Times,serif;
 	text-shadow: 3px 3px #999999;
 	text-align: center;
+}
+
+.container {
+	display:flex;
+	flex-direction: column;
+}
+
+.container div{
+	border: 2px #cccccc solid;
+	background: white;
+	border-radius: 12px;
+	padding: 16px;
+}
+
+.quotes {
+	font-size: 12pt;
 }

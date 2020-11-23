@@ -63,4 +63,12 @@ body{
 	text-align: center;
 }
 
-
+#kontakt {
+	background: url("images/slajd_3.jpg");
+	background-color: gray;
+	background-blend-mode: hard-light;
+	padding: 25px;
+	font-size: 15pt;
+	color: white;
+	text-shadow: 2px 2px black;
+}

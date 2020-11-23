@@ -1,0 +1,24 @@
+.maintxt {
+    background-size: cover;
+}
+
+.container {
+	position: relative;
+	text-align: center;
+	color: white;
+}
+
+.container img {
+	width: 100%;
+	height: auto;
+}
+
+.maintxt {
+	position: absolute;
+	top: 30%;
+	left: 67%;
+	font-size: 6vw;
+	font-family: Pacifico;
+	color: #CB2020;
+	text-shadow: 2px 2px black;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>KVIZ</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="pitanja.json"></script>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row h-100 justify-content-center">
+        <div class="my-auto">
+          <button id="start" type="button" class="btn btn-primary" onclick="start()"><h1 id="start_text">START</h1></button>
+          
+          <div id="questions"  style="display: none;">
+            <div class="d-flex row">
+              <div class="my-col1 col-sm-12">Koja država ima najdužu obalu na svetu??</div>
+            </div>
+            <div class="d-flex justify-content-around">
+              <div class="sl1" onclick="add5()"><img data-toggle="tooltip" title="5 extra seconds" src="images/5s.png" alt=""></div>
+              <div class="sl2" onclick="mixQuestion()"><img  data-toggle="tooltip" title="Zamena pitanja" src="images/arrows.png" alt=""></div>
+              <div class="sl3" onclick="eliminate2Wrong()"><img  data-toggle="tooltip" title="Izbaci 2 netačna odgovora" src="images/cut.png" alt=""></div>
+            </div>
+            <div class="d-flex row">
+              <div class="my-col col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">Grčka</div>
+              <div class="my-col col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">Rusija</div>
+            </div>
+            <div class="d-flex row">
+              <div class="my-col col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">Kanada</div>
+              <div class="my-col col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">Indonezija</div>
+            </div>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

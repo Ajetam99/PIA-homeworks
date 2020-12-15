@@ -62,3 +62,7 @@ img {
 img:hover {
     filter: invert();
 }
+
+.spacing{
+    height: 10px;
+}

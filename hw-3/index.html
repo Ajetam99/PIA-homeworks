@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>KVIZ</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width - 20">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,38 +21,60 @@
     <div class="container">
         <div class="row h-100 justify-content-center">
             <div class="my-auto">
-                <form id="formName" name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
-                    <input type="text" class="form-control my-form" id="name" placeholder="Name">
+                <form id="formName" name="myForm" action="javascript:document.getElementById('submitName').click();" onsubmit="return validateForm()" method="post">
+                    <input type="text" class="form-control" id="name" placeholder="Name">
                     <div class="spacing"></div>
-                    <button type="button" class="btn btn-primary" onclick="submited()">Submit</button>
+                    <div class="d-flex justify-content-center">
+                        <button id="submitName" type="button" class="btn btn-primary" onclick="submited()">Submit</button>
+                    </div>
                 </form>
-                <button id="start" type="button" class="btn btn-primary" onclick="start()" style="display: none;">
-                    <h1 id="start_text">START</h1>
+                <div id="rules" style="display: none;">
+                    <h4>RULES</h4>
+                    <p id="rules1">
+                        1. There will be 10 questions with each carrying 1 point for the correct and 0 for the incorrect answer. <br>
+                        2. Some will have 4 possible answers under the question and for others you will need to write the correct answer yourself <br>
+                        3. You have 20s for each answer <br>
+                        
+                    </p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button id="start" type="button" class="btn btn-primary" onclick="start()" style="display: none;">
+                        <h1 id="start_text">START</h1>
                 </button>
+                </div>
 
                 <div id="questions" style="display: none;">
+                    <div class="d-flex justify-content-between">
+                        <div class="my-col1">1/10</div>
+                        <div id="points" class="my-col1">points: 0</div>
+                    </div>
                     <div class="d-flex row">
-                        <div class="my-col1 col-sm-12">Koja država ima najdužu obalu na svetu?</div>
+                        <div class="my-col2 col-sm-12">Koja država ima najdužu obalu na svetu?</div>
                     </div>
                     <div class="d-flex justify-content-around">
-                        <div class="sl1" onclick="add5()"><img data-toggle="tooltip" title="5 extra seconds"
-                                src="images/5s.png" alt=""></div>
-                        <div class="sl2" onclick="mixQuestion()"><img data-toggle="tooltip" title="Zamena pitanja"
+                        <div class="sl1" onclick="mixQuestion()"><img id="hlp" class="help" data-toggle="tooltip" title="Zamena pitanja"
                                 src="images/arrows.png" alt=""></div>
-                        <div class="sl3" onclick="eliminate2Wrong()"><img data-toggle="tooltip"
-                                title="Izbaci 2 netačna odgovora" src="images/cut.png" alt=""></div>
+                        <div id="timer" class="timer"></div>
+                        
                     </div>
                     <div class="d-flex row">
-                        <div class="my-col col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                        <div class="my-col3 answers col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             Grčka</div>
-                        <div class="my-col col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                        <div class="my-col3 answers col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             Rusija</div>
                     </div>
                     <div class="d-flex row">
-                        <div class="my-col col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                        <div class="my-col3 answers col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             Kanada</div>
-                        <div class="my-col col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                        <div class="my-col3 answers col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             Indonezija</div>
+                    </div>
+                    <div class="spacing1"></div>
+                    <div class="d-flex row flex-nowrap">
+                        <div class="my-col4 skp col-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                            SKIP</div>
+                        <div class="my-col4 ext col-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                            GIVE UP</div>
                     </div>
                 </div>
             </div>

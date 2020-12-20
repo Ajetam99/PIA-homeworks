@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    max-width: 100%;
 }
 
 .container {
@@ -14,7 +15,8 @@ html, body {
     font-size: 50pt;
 }
 
-.my-col {
+.my-col1 {
+    width: auto;
     border-radius: 25px;
     border-style: solid;
     border-color: #ff8333;
@@ -24,10 +26,11 @@ html, body {
     font-size: 24pt;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white;
+    cursor: pointer;
 }
 
-.my-col1 {
-    min-width: 500px;
+.my-col2 {
+    min-width: 300px;
     max-width: 500px;
     border-radius: 25px;
     border-style: solid;
@@ -38,6 +41,46 @@ html, body {
     font-size: 24pt;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white;
+    cursor: pointer;
+}
+
+.my-col3 {
+    border-radius: 25px;
+    border-style: solid;
+    border-color: #ff8333;
+    padding: 15px;
+    text-align: center;
+    background-color: #007bff;
+    font-size: 24pt;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    cursor: pointer;
+}
+
+.answers:hover{
+    padding: 9px;
+    font-size: 30pt;
+}
+
+.my-col4 {
+    border-radius: 25px;
+    border-style: solid;
+    border-color: #ff8333;
+    padding: 0px;
+    text-align: center;
+    background-color: #007bff;
+    font-size: 20pt;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    cursor: pointer;
+}
+
+.skp:hover{
+    color:black;
+}
+
+.ext:hover{
+    color: red;
 }
 
 .sl1 {
@@ -45,24 +88,104 @@ html, body {
     height: auto;
 }
 
-.sl2 {
+.timer {
     width: 50px;
     height: auto;
+    border-radius: 500px;
+    color: white;
+    background-color: #007bff;
+    font-size: 24pt;
+    text-align: center;
+    font-weight: bold;
 }
 
-.sl3 {
+.timer1 {
     width: 50px;
     height: auto;
+    border-radius: 500px;
+    color: white;
+    animation: rw 1200ms infinite;
+    background-color: #007bff;
+    font-size: 24pt;
+    text-align: center;
+    font-weight: bold;
 }
 
-img {
+@keyframes rw{
+    0%      {color: white;}
+    50%     {color: red;}
+    100%    {color: white;}
+}
+
+.timer2 {
+    width: 50px;
+    height: auto;
+    border-radius: 500px;
+    color: red;
+    background-color: #007bff;
+    font-size: 24pt;
+    text-align: center;
+    font-weight: bold;
+}
+
+.help {
     height: 50px;
     width: auto;
 }
-img:hover {
+
+.help1{
+    height: 50px;
+    width: auto;
+}
+
+.help:hover {
     filter: invert();
 }
 
 .spacing{
     height: 10px;
 }
+
+.spacing1{
+    height: 30px;
+}
+
+h4 {
+    text-align: center;
+}
+
+@media only screen and (max-width: 360px) {
+    body {
+        background-color: aquamarine;
+        padding-left: 15px;
+        height: 100%;
+    }
+    .my-col1 {
+        width: auto;
+        border-radius: 25px;
+        border-style: solid;
+        border-color: #ff8333;
+        padding: 5px 10px 5px 10px;
+        text-align: center;
+        background-color: #007bff;
+        font-size: 24pt;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: white;
+        cursor: pointer;
+    }
+    .my-col2 {
+        min-width: 300px;
+        max-width: 500px;
+        border-radius: 25px;
+        border-style: solid;
+        border-color: #ff8333;
+        padding: 20px;
+        text-align: center;
+        background-color: #007bff;
+        font-size: 24pt;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: white;
+        cursor: pointer;
+        line-height: 100%;
+    }
+  }

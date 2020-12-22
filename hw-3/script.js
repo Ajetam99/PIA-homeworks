@@ -89,7 +89,7 @@ var questions =
         "answers":["1024","1024","1024"]
     },
     {
-        "question":"What is the symbol og gold in the periodic table of elements?",
+        "question":"What is the symbol of gold in the periodic table of elements?",
         "answers":["au","au","au"]
     },
     {
@@ -162,13 +162,139 @@ var questions =
     }
 ];
 
+document.getElementById("name").focus();
+
+var bgDark = "#363535";
+var bgLight = "#ff8333";
+var light = "#007bff";
+var dark = "#0055b0";
+var lightSelect = "#0061ff";
+var darkSelect = "#004997";
+
+var currentQuestion = 0;
+var questionNumber = 0;
+var points = 0;
+
 var oldQuestions = [];
+var oldTextQuestions = [];
+var alreadyAnswered = false;
+
+function askQuestion(){
+    if(!mixed){
+        questionNumber+=1;
+    }
+    mixed = false;
+    document.getElementById("numOfQuestion").innerHTML = questionNumber;
+    var q = Math.floor(Math.random() * 2);
+    q = 0;
+    alreadyAnswered = false;
+    startTimer(20);
+    if(q==0){
+        setQuestion();
+    }
+    else{
+        setQuestionText();
+    }
+}
+
+function showPoints(){
+    document.getElementById("points").innerHTML = points;
+}
+
+function answered(a){
+    if(alreadyAnswered){
+        return null;
+    }
+    else{
+        alreadyAnswered = true;
+        a.style.backgroundColor = "#c4c10e";
+        setTimeout(function(ans){
+            if(questions[currentQuestion].answers[0]==a.innerHTML){
+                a.style.backgroundColor = "green";
+                points += 1;
+                showPoints();
+            }
+            else{
+                a.style.backgroundColor = "red";
+                findAnswer();
+                }
+            setTimeout(nextQuestion,2000)
+
+        },1000);
+    }
+}
+
+function findAnswer(){
+    if(document.getElementById("answer1").innerHTML == questions[currentQuestion].answers[0]){
+        document.getElementById("answer1").style.backgroundColor = "green";
+    }
+    if(document.getElementById("answer2").innerHTML == questions[currentQuestion].answers[0]){
+        document.getElementById("answer2").style.backgroundColor = "green";
+    }
+    if(document.getElementById("answer3").innerHTML == questions[currentQuestion].answers[0]){
+        document.getElementById("answer3").style.backgroundColor = "green";
+    }
+    if(document.getElementById("answer4").innerHTML == questions[currentQuestion].answers[0]){
+        document.getElementById("answer4").style.backgroundColor = "green";
+    }
+}
+
+function nextQuestion(){
+    if(questionNumber==10){
+        document.getElementById("question").innerHTML = "KRAJ";
+    }
+    else{
+        enterDarkMode();
+        enterDarkMode();
+        askQuestion();
+    }
+
+}
+
+
+function setQuestionText(){
+    var ans = document.getElementById("textAnswer");
+    ans.style.display = "block";
+    hideAnswers();
+    document.getElementById("answerInput").focus();
+    currentQuestion = getRandomQuestionText();
+    var q = document.getElementById("question");
+    q.innerHTML = questions[currentQuestion].question;
+}
+
+function hideAnswers(){
+    var ans1 = document.getElementById("answers12");
+    ans1.style.display = "none";
+    var ans2 = document.getElementById("answers34");
+    ans2.style.display = "none";
+}
+
+function showAnswers(){
+    var ans1 = document.getElementById("answers12");
+    ans1.style.display = "";
+    var ans2 = document.getElementById("answers34");
+    ans2.style.display = "";
+}
+
+function getRandomQuestionText(){
+    var q = Math.floor(Math.random() * 20) + 20;
+    if(oldTextQuestions.includes(q)){
+        return getRandomQuestion();
+    }
+    else {
+        oldQuestions.push(q);
+        return q;
+    }
+}
 
 function setQuestion(){
-    var n = getRandomQuestion();
+    showAnswers();
+    var ans = document.getElementById("textAnswer");
+    ans.style.display = "none";
+    currentQuestion = getRandomQuestion();
     var q = document.getElementById("question");
-    q.innerHTML = questions[n].question;
-    setAnswers(n);
+    q.innerHTML = questions[currentQuestion].question;
+    setAnswers(currentQuestion);
 }
 
 function getRandomQuestion(){
@@ -207,25 +333,25 @@ function enterDarkMode(){
         darkMode = false;
         var x = document.getElementsByClassName("elements");
         for(var i=0 ; i<x.length ; i++){
-            x[i].style.borderColor = "#ff8333";
-            x[i].style.backgroundColor = "#007bff";
+            x[i].style.borderColor = bgLight;
+            x[i].style.backgroundColor = light;
         }
-        document.getElementsByTagName("BODY")[0].style.backgroundColor = "#ff8333";
+        document.getElementsByTagName("BODY")[0].style.backgroundColor = bgLight;
     }
     else{
         darkMode = true;
         var x = document.getElementsByClassName("elements");
         for(var i=0 ; i<x.length ; i++){
-            x[i].style.borderColor = "#363535";
-            x[i].style.backgroundColor = "#0055b0";
+            x[i].style.borderColor = bgDark;
+            x[i].style.backgroundColor = dark;
         }
-        document.getElementsByTagName("BODY")[0].style.backgroundColor = "#363535";
+        document.getElementsByTagName("BODY")[0].style.backgroundColor = bgDark;
     }
 }
 
 function submited(){
     username = document.forms["myForm"]["name"].value
-    if(username==""){
+    if(username.trim()==""){
         return 0;
     }
     else{
@@ -239,22 +365,22 @@ function submited(){
 }
 
 function start(){
-
-    document.getElementsByTagName("BODY")[0].style.backgroundColor = "#ff8333";
     var btn = document.getElementById("start");
     var q = document.getElementById("questions");
     var r = document.getElementById("rules");
     r.style.display = "none";
     btn.style.display = "none";
     q.style.display = "block";
-    startTimer(20);
-    setQuestion();
+    askQuestion();
 }
 
+var timer;
+
 function startTimer(timerLength){
+    clearTimeout(timer);
 	var count = parseInt(new Date().getTime()/1000);
 	var end = parseInt(new Date().getTime()/1000) + timerLength;
-	var interval = setInterval(function(){
+	timer = setInterval(function(){
         document.getElementById('timer').innerHTML=end-count;
         if(parseInt(new Date().getTime()/1000) == count+1)
             count++;
@@ -263,45 +389,68 @@ function startTimer(timerLength){
             p.className="timer1 elements"
         }
         if (count === end){
-        clearInterval(interval);
+        clearInterval(timer);
         document.getElementById('timer').innerHTML='0';
         p = document.getElementById("timer");
-        p.className = "timer2 elements"
+        p.className = "timer2 elements";
+        findAnswer();
+        alreadyAnswered = true;
+        setTimeout(function(){
+            p = document.getElementById("timer");
+            p.className="timer elements"
+            nextQuestion();
+        },2000);
+
         }
     }, 100);
 }
 
+
 function darkenAnswer(x){
-    if(darkMode){
-        x.style.backgroundColor = "#004997";
+    if(alreadyAnswered){
+        return null;
     }
     else{
-        x.style.backgroundColor = "#0061ff";
+        if(darkMode){
+            x.style.backgroundColor = darkSelect;
+        }
+        else{
+            x.style.backgroundColor = lightSelect;
+        }
     }
 }
 
 function backAnswer(x){
-    if(darkMode){
-        x.style.backgroundColor = "#0055b0";
+    if(alreadyAnswered){
+        return null;
     }
     else{
-        x.style.backgroundColor = "#007bff"
+        if(darkMode){
+            x.style.backgroundColor = dark;
+        }
+        else{
+            x.style.backgroundColor = light;
+        }
     }
 }
 
 var br = 0;
+var mixed = false;
 
 function mixQuestion(){
-    x = document.getElementById("points");
-    br += 1
-    x.innerHTML = br;
-    p = document.getElementById("hlp");
-    if(p.className=="help1"){
-        return 0;
+    if(alreadyAnswered){
+        return null;
     }
     else{
-        setQuestion();
-        p.className = "help1"
+        p = document.getElementById("hlp");
+        if(p.className=="help1"){
+            return 0;
+        }
+        else{
+            mixed = true;
+            askQuestion();
+            p.className = "help1"
+        }
     }
 }
 

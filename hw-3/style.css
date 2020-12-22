@@ -1,6 +1,7 @@
 html, body {
     height: 100%;
     max-width: 100%;
+    background-color: #ff8333;
 }
 
 .container {
@@ -15,6 +16,25 @@ html, body {
     font-size: 50pt;
 }
 
+.rules{
+    background-color: transparent;
+}
+
+#rules0{
+    font-size: 30pt;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+}
+
+#rules1{
+    font-size: 20pt;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+}
+
+#numOfQuestion{
+    display: inline;
+}
 
 .elements{
     border-color: #ff8333;  
@@ -69,6 +89,20 @@ html, body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white;
     cursor: pointer;
+}
+
+.my-form1{
+    font-size: 24pt;
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.my-form1:focus{
+    outline: none;
 }
 
 .skp:hover{
@@ -155,17 +189,8 @@ h4 {
 #points{
     float: right;
     font-size: 24pt;
-    transform: translateY(-40px);
-    animation: 500ms slideIn ease-in-out forwards 1s;
-    opacity: 0;
 }
 
-#points::before{
-    float: right;
-    background-color: var(--secondary-color);
-    position: absolute;
-    bottom: -10px;
-}
 
 @keyframes slideIn {
     100%{
@@ -173,6 +198,69 @@ h4 {
         opacity: 1;
     }
 }
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #c8692a;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-image: url("images/sun.png");
+    background-size: contain;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .slider {
+    background-color: #252525;
+  }
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+  
+  /* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    border-radius: 50%;
+}
+
 
 /* ########################################################### */
 @media only screen and (max-width: 800px) {

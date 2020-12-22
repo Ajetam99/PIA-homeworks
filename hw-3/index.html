@@ -43,36 +43,36 @@
 
                 <div id="questions" style="display: none;">
                     <div class="d-flex justify-content-between">
-                        <div class="my-col1">1/10</div>
-                        <button class="my-col1" style="width: 20px"></button>
-                        <div id="pointsBox" class="my-col1">points: &nbsp; <p id="points">0</p></div>
+                        <div class="my-col1 elements">1/10</div>
+                        <div class="my-col1 elements" style="width: 20px" onclick="enterDarkMode()"></div>
+                        <div id="pointsBox" class="my-col1 elements">points: &nbsp; <p id="points">0</p></div>
                     </div>
                     <div class="d-flex row">
-                        <div id="question" class="my-col2 col-sm-12">Koja država ima najdužu obalu na svetu?</div>
+                        <div id="question" class="my-col2 elements col-sm-12">Koja država ima najdužu obalu na svetu?</div>
                     </div>
                     <div class="d-flex justify-content-around">
                         <div class="sl1" onclick="mixQuestion()"><img id="hlp" class="help" data-toggle="tooltip" title="Zamena pitanja"
                                 src="images/arrows.png" alt=""></div>
-                        <div id="timer" class="timer"></div>
+                        <div id="timer" class="timer elements"></div>
                         
                     </div>
                     <div class="d-flex row">
-                        <div id="answer1" class="my-col3 answers col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                        <div id="answer1" class="my-col3 elements col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             Grčka</div>
-                        <div id="answer2" class="my-col3 answers col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                        <div id="answer2" class="my-col3 elements col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             Rusija</div>
                     </div>
                     <div class="d-flex row">
-                        <div id="answer3" class="my-col3 answers col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                        <div id="answer3" class="my-col3 elements col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             Kanada</div>
-                        <div id="answer4" class="my-col3 answers col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                        <div id="answer4" class="my-col3 elements col-sm-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             Indonezija</div>
                     </div>
                     <div class="spacing1"></div>
                     <div class="d-flex row flex-nowrap">
-                        <div class="my-col4 skp col-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                        <div class="my-col4 elements skp col-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             SKIP</div>
-                        <div class="my-col4 ext col-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                        <div class="my-col4 elements ext col-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             GIVE UP</div>
                     </div>
                 </div>

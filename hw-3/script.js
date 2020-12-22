@@ -200,10 +200,27 @@ function getRandomAnswers(){
     return ans
 }
 
+var darkMode = false;
+
 function enterDarkMode(){
-    console.log("PUSI MI KURAC");
-    var xx = document.getElementsByTagName("BODY")[0];
-    xx.className = "dark";
+    if(darkMode){
+        darkMode = false;
+        var x = document.getElementsByClassName("elements");
+        for(var i=0 ; i<x.length ; i++){
+            x[i].style.borderColor = "#ff8333";
+            x[i].style.backgroundColor = "#007bff";
+        }
+        document.getElementsByTagName("BODY")[0].style.backgroundColor = "#ff8333";
+    }
+    else{
+        darkMode = true;
+        var x = document.getElementsByClassName("elements");
+        for(var i=0 ; i<x.length ; i++){
+            x[i].style.borderColor = "#363535";
+            x[i].style.backgroundColor = "#0055b0";
+        }
+        document.getElementsByTagName("BODY")[0].style.backgroundColor = "#363535";
+    }
 }
 
 function submited(){
@@ -243,29 +260,38 @@ function startTimer(timerLength){
             count++;
         if(end-count<6){
             p = document.getElementById("timer");
-            p.className="timer1"
+            p.className="timer1 elements"
         }
         if (count === end){
         clearInterval(interval);
         document.getElementById('timer').innerHTML='0';
         p = document.getElementById("timer");
-        p.className = "timer2"
+        p.className = "timer2 elements"
         }
     }, 100);
 }
 
 function darkenAnswer(x){
-    x.style.backgroundColor = "#0061ff";
+    if(darkMode){
+        x.style.backgroundColor = "#004997";
+    }
+    else{
+        x.style.backgroundColor = "#0061ff";
+    }
 }
 
 function backAnswer(x){
-    x.style.backgroundColor = "#007bff"
+    if(darkMode){
+        x.style.backgroundColor = "#0055b0";
+    }
+    else{
+        x.style.backgroundColor = "#007bff"
+    }
 }
 
 var br = 0;
 
 function mixQuestion(){
-    enterDarkMode();
     x = document.getElementById("points");
     br += 1
     x.innerHTML = br;

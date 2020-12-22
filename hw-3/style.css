@@ -3,10 +3,6 @@ html, body {
     max-width: 100%;
 }
 
-.dark{
-    background-color: black;
-}
-
 .container {
     height: 100%;
 }
@@ -19,14 +15,18 @@ html, body {
     font-size: 50pt;
 }
 
+
+.elements{
+    border-color: #ff8333;  
+    background-color: #007bff;
+}
+
 .my-col1 {
     width: auto;
     border-radius: 25px;
     border-style: solid;
-    border-color: #ff8333;
     padding: 15px;
     text-align: center;
-    background-color: #007bff;
     font-size: 24pt;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white;
@@ -38,10 +38,8 @@ html, body {
     max-width: 800px;
     border-radius: 25px;
     border-style: solid;
-    border-color: #ff8333;
     padding: 35px;
     text-align: center;
-    background-color: #007bff;
     font-size: 24pt;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white;
@@ -53,10 +51,8 @@ html, body {
     max-width: 400px;
     border-radius: 25px;
     border-style: solid;
-    border-color: #ff8333;
     padding: 20px;
     text-align: center;
-    background-color: #007bff;
     font-size: 24pt;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white;
@@ -64,19 +60,11 @@ html, body {
     line-height: 100%;
 }
 
-.answers:hover{
-    line-height: 90%;
-    padding: 20px;
-    font-size: 26pt;
-}
-
 .my-col4 {
     border-radius: 25px;
     border-style: solid;
-    border-color: #ff8333;
     padding: 0px;
     text-align: center;
-    background-color: #007bff;
     font-size: 20pt;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white;
@@ -102,7 +90,6 @@ html, body {
     height: auto;
     border-radius: 500px;
     color: white;
-    background-color: #007bff;
     font-size: 24pt;
     text-align: center;
     font-weight: bold;
@@ -115,7 +102,6 @@ html, body {
     border-radius: 500px;
     color: white;
     animation: rw 1200ms infinite;
-    background-color: #007bff;
     font-size: 24pt;
     text-align: center;
     font-weight: bold;

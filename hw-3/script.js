@@ -90,15 +90,15 @@ var questions =
     },
     {
         "question":"What is the symbol of gold in the periodic table of elements?",
-        "answers":["au","au","au"]
+        "answers":["Au","Au","Au"]
     },
     {
         "question":"What car manifactured by Zastava was imported to American market?",
-        "answers":["yugo","yugo koral","koral"]
+        "answers":["Yugo","Yugo Koral","Koral"]
     },
     {
         "question":"Which country invented tea?",
-        "answers":["china","china","china"]
+        "answers":["China","China","China"]
     },
     {
         "question":"Which organ has four chambers?",
@@ -106,23 +106,23 @@ var questions =
     },
     {
         "question":"What is the name of Batman's sidekick?",
-        "answers":["robin","robin","robin"]
+        "answers":["Robin","Robin","Robin"]
     },
     {
         "question":"What is the name of the world’s longest river?",
-        "answers":["nile","nile","the nile"]
+        "answers":["Nile","Nile","the Nile"]
     },
     {
         "question":"Mahatma Gandi’s birthday is a national holiday in which country?",
-        "answers":["india","india","india"]
+        "answers":["India","India","India"]
     },
     {
         "question":"What is the name of the song with the most views on YouTube?",
-        "answers":["despacito","despacito","despacito"]
+        "answers":["Despacito","Despacito","Despacito"]
     },
     {
         "question":"The fashion designer, Gianni Versace, came from which country?",
-        "answers":["italy","italy","italy"]
+        "answers":["Italy","Italy","Italy"]
     },
     {
         "question":"How many Lord of the Rings films are there?",
@@ -130,7 +130,7 @@ var questions =
     },
     {
         "question":"Which popular TV show featured house Targaryen and Stark?",
-        "answers":["got","got","game of thrones"]
+        "answers":["Game Of Thrones","GOT","Game Of Thrones"]
     },
     {
         "question":"How many NBA championships do the Boston Celtics have?",
@@ -150,7 +150,7 @@ var questions =
     },
     {
         "question":"Thor was the son of which God?",
-        "answers":["odin","odin","odin"]
+        "answers":["Odin","Odin","Odin"]
     },
     {
         "question":"How many cards are there in a standard deck of cards?",
@@ -178,6 +178,7 @@ var points = 0;
 var oldQuestions = [];
 var oldTextQuestions = [];
 var alreadyAnswered = false;
+var countQuestions = [0,0];
 
 function askQuestion(){
     if(!mixed){
@@ -186,13 +187,21 @@ function askQuestion(){
     mixed = false;
     document.getElementById("numOfQuestion").innerHTML = questionNumber;
     var q = Math.floor(Math.random() * 2);
-    q = 0;
+    if(countQuestions[0]==5){
+        q = 1;
+    }
+    if(countQuestions[1]==5){
+        q = 0;
+    }
+    p = document.getElementById("timer");
+    p.className = "timer elements";
     alreadyAnswered = false;
-    startTimer(20);
     if(q==0){
+        countQuestions[0]+=1;
         setQuestion();
     }
     else{
+        countQuestions[1]+=1;
         setQuestionText();
     }
 }
@@ -201,14 +210,64 @@ function showPoints(){
     document.getElementById("points").innerHTML = points;
 }
 
+function textAnswer(){
+    if(alreadyAnswered){
+        return null;
+    }
+    else{
+        p = document.getElementById("timer");
+        p.className = "timer elements";
+        clearTimeout(timer);
+        alreadyAnswered = true;
+        a = document.getElementById("textAnswer");
+        a.style.backgroundColor = "#c4c10e";
+        b = document.getElementById("answerInput");
+        b.disabled = true;
+        setTimeout(function(){
+            if(rightAnswer()){
+                b.disabled = "true";
+                a.style.backgroundColor = "green";
+                points += 1;
+                showPoints();
+            }
+            else{
+                b.disabled = "true";
+                b.value = questions[currentQuestion].answers[0];
+                a.style.backgroundColor = "red";
+                findAnswer();
+                }
+            setTimeout(nextQuestion,2000)
+
+        },1000);
+    }
+}
+
+function rightAnswer(){
+    ans = document.forms["FormAns"]["answerInput"].value;
+    console.log(ans);
+    if(questions[currentQuestion].answers[0].toLowerCase()==ans.trim().toLowerCase()){
+        return true;
+    }
+    if(questions[currentQuestion].answers[1]==ans.trim().toLowerCase()){
+        return true;
+    }
+    if(questions[currentQuestion].answers[2]==ans.trim().toLowerCase()){
+        return true;
+    }
+    return false;
+}
+
 function answered(a){
     if(alreadyAnswered){
         return null;
     }
     else{
+        p = document.getElementById("timer");
+        p.className = "timer elements";
+        clearTimeout(timer);
         alreadyAnswered = true;
         a.style.backgroundColor = "#c4c10e";
-        setTimeout(function(ans){
+        setTimeout(function(){
             if(questions[currentQuestion].answers[0]==a.innerHTML){
                 a.style.backgroundColor = "green";
                 points += 1;
@@ -255,11 +314,15 @@ function nextQuestion(){
 function setQuestionText(){
     var ans = document.getElementById("textAnswer");
     ans.style.display = "block";
+    document.getElementById("formAnswer").reset()
     hideAnswers();
+    b = document.getElementById("answerInput");
+    b.disabled = false;
     document.getElementById("answerInput").focus();
     currentQuestion = getRandomQuestionText();
     var q = document.getElementById("question");
     q.innerHTML = questions[currentQuestion].question;
+    startTimer(20);
 }
 
 function hideAnswers(){
@@ -295,6 +358,7 @@ function setQuestion(){
     var q = document.getElementById("question");
     q.innerHTML = questions[currentQuestion].question;
     setAnswers(currentQuestion);
+    startTimer(20);
 }
 
 function getRandomQuestion(){
@@ -312,11 +376,11 @@ function setAnswers(q){
     n = getRandomAnswers();
     var a = document.getElementById("answer1");
     a.innerHTML = questions[q].answers[n[0]];
-    var a = document.getElementById("answer2");
+    a = document.getElementById("answer2");
     a.innerHTML = questions[q].answers[n[1]];
-    var a = document.getElementById("answer3");
+    a = document.getElementById("answer3");
     a.innerHTML = questions[q].answers[n[2]];
-    var a = document.getElementById("answer4");
+    a = document.getElementById("answer4");
     a.innerHTML = questions[q].answers[n[3]];
 }
 
@@ -378,6 +442,8 @@ var timer;
 
 function startTimer(timerLength){
     clearTimeout(timer);
+    p = document.getElementById("timer");
+    p.className = "timer elements";
 	var count = parseInt(new Date().getTime()/1000);
 	var end = parseInt(new Date().getTime()/1000) + timerLength;
 	timer = setInterval(function(){
@@ -442,15 +508,18 @@ function mixQuestion(){
         return null;
     }
     else{
-        p = document.getElementById("hlp");
-        if(p.className=="help1"){
+        d = document.getElementById("hlp");
+        if(d.className=="help1"){
             return 0;
         }
         else{
             mixed = true;
             askQuestion();
-            p.className = "help1"
+            d.className = "help1"
         }
     }
 }
 
+function dark() {
+    x = document.getElementsByTagName("BODY")[0].className = "dark";
+}

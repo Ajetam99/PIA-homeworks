@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     max-width: 100%;
     background-color: #ff8333;
+    overflow: hidden;
 }
 
 .container {
@@ -39,6 +40,7 @@ html, body {
 .elements{
     border-color: #ff8333;  
     background-color: #007bff;
+    user-select: none;
 }
 
 .my-col1 {

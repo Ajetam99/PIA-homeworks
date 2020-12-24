@@ -17,8 +17,35 @@ html, body {
     font-size: 50pt;
 }
 
+.result{
+    float: right;
+    background-color: #021599;
+}
+
+.username{
+    font-size: 18pt;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+
+#leaders{
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 30pt;
+    font-family: 'Brush Script MT', cursive;
+}
+
+.lb{
+    min-width: 500px;
+}
+
 .odd{
-    background-color: grey;
+    background-color: #007bff;
+}
+
+.even{
+    background-color: #0055b0;
 }
 
 .rules{

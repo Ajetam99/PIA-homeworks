@@ -213,10 +213,10 @@ function showLeaderboard(){
     var l = document.getElementById("leaderboard")
     l.style.display = "block";
     for(var i=1 ; i<11 ; i++){
-        var u = document.getElementById("user"+i.toString());
+        var u = document.getElementById("u"+i.toString());
         u.innerText = localStorage["name"+i.toString()];
         var kkk = document.getElementById("result"+i.toString());
-        kkk.innerHTML = 9;
+        kkk.innerHTML = localStorage["res"+i.toString()];
     }
 }
 

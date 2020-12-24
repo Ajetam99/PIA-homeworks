@@ -32,6 +32,7 @@
                         <button id="submitName" type="button" class="btn btn-primary" onclick="submited()">SUBMIT</button>
                     </div>
                 </form>
+
                 <div id="rules" style="display: none;">
                     <h4 id="rules0">RULES</h4>
                     <p id="rules1">
@@ -86,18 +87,43 @@
                     <div class="d-flex row flex-nowrap">
                         <div class="my-col4 elements skp col-6" onclick="nextQuestion()" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             SKIP</div>
-                        <div class="my-col4 elements ext col-6" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
+                        <div class="my-col4 elements ext col-6" onclick="endGame()" onmouseover="darkenAnswer(this)" onmouseout="backAnswer(this)">
                             GIVE UP</div>
                     </div>
                 </div>
                 <div id="leaderboard" class="" style="display: none;">
                     <h3>LEADERBOARD</h3>
                     <ul class="list-group">
-                        <li class="list-group-item">User1</li>
-                        <li class="list-group-item">User2</li>
-                        <li class="list-group-item">User3</li>
-                        <li class="list-group-item">User4</li>
-                        <li class="list-group-item">User4</li>
+                        <li id="user1" class="list-group-item odd">
+                            <span id="result1" class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li id="user2" class="list-group-item even">
+                            <span id="result2" class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li id="user3" class="list-group-item odd">
+                            <span id="result3" class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li id="user4" class="list-group-item even">
+                            <span id="result4" class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li id="user5" class="list-group-item odd">
+                            <span id="result5" class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li id="user6" class="list-group-item even">
+                            <span id="result6" class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li id="user7" class="list-group-item odd">
+                            <span id="result7" class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li id="user8" class="list-group-item even">
+                            <span id="result8" class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li id="user9" class="list-group-item odd">
+                            <span id="r9" class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li id="user10" class="list-group-item even">
+                            <span id="result10" class="badge badge-primary badge-pill">14</span>
+                        </li>
                     </ul>
                 </div>
                 </div>
@@ -105,8 +131,8 @@
         </div>
     </div>
     </div>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 
-<script src="script.js"></script>
-<script type="text/javascript" src="script.js"></script>
+
 </html>

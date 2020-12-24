@@ -17,6 +17,10 @@ html, body {
     font-size: 50pt;
 }
 
+.odd{
+    background-color: grey;
+}
+
 .rules{
     background-color: transparent;
 }

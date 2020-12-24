@@ -157,14 +157,78 @@ var questions =
         "answers":["52","52","fifty-two"]
     },
     {
-        "question":"How many characters are there in a popular TV show Seinfeld?",
+        "question":"How many main characters are there in a popular TV show Seinfeld?",
         "answers":["4","4","four"]
     }
 ];
 
+// Saving to localStorage
+
+function saveResult(usr,pts){
+    for(i=1;i<11;i++){
+        if(localStorage.getItem("res"+i.toString())==null){
+            console.log("ovde1")
+            localStorage.setItem("name"+i.toString(),usr);
+            localStorage.setItem("res"+i.toString(), pts.toString());
+            console.log(i.toString()+ "   kraj prvog ifa");
+            return 0;
+        }
+        else {
+            if(parseInt(localStorage.getItem("res"+i.toString()))<pts){
+                console.log("ovde2")
+                var helpU = localStorage["name"+i.toString()] ;
+                var helpP = parseInt(localStorage.getItem("res"+i.toString()));
+                console.log(helpU);
+                console.log(helpP);
+                localStorage.setItem("name"+i.toString(),usr);
+                localStorage.setItem("res"+i.toString(), pts.toString());
+                pts = helpP;
+                usr = helpU;
+            }
+            else if(parseInt(localStorage.getItem("res"+i.toString()))==pts){
+                if(localStorage.getItem("name"+i.toString())>usr){
+                    var helpU = localStorage["name"+i.toString()] ;
+                    var helpP = parseInt(localStorage.getItem("res"+i.toString()));
+                    console.log(helpU);
+                    console.log(helpP);
+                    localStorage.setItem("name"+i.toString(),usr);
+                    localStorage.setItem("res"+i.toString(), pts.toString());
+                    pts = helpP;
+                    usr = helpU;
+                }
+            }
+        
+        }
+    }
+    return 0
+}
+
+// #################
+
+function showLeaderboard(){
+    var f = document.getElementById("formName");
+    f.style.display = "none";
+    var q = document.getElementById("questions");
+    q.style.display = "none";
+    var l = document.getElementById("leaderboard")
+    l.style.display = "block";
+    for(var i=1 ; i<11 ; i++){
+        var u = document.getElementById("user"+i.toString());
+        u.innerText = localStorage["name"+i.toString()];
+        var kkk = document.getElementById("result"+i.toString());
+        kkk.innerHTML = 9;
+    }
+}
+
+function endGame(){
+    saveResult(username,points);
+    showLeaderboard();
+}
+
 document.getElementById("name").focus();
 
-var bgDark = "#363535";
+var username;
+var bgDark = "#353535";
 var bgLight = "#ff8333";
 var light = "#007bff";
 var dark = "#0055b0";
@@ -176,9 +240,10 @@ var questionNumber = 0;
 var points = 0;
 
 var oldQuestions = [];
-var oldTextQuestions = [];
 var alreadyAnswered = false;
 var countQuestions = [0,0];
+
+
 
 function askQuestion(){
     if(!mixed){
@@ -244,14 +309,13 @@ function textAnswer(){
 
 function rightAnswer(){
     ans = document.forms["FormAns"]["answerInput"].value;
-    console.log(ans);
     if(questions[currentQuestion].answers[0].toLowerCase()==ans.trim().toLowerCase()){
         return true;
     }
-    if(questions[currentQuestion].answers[1]==ans.trim().toLowerCase()){
+    if(questions[currentQuestion].answers[1].toLowerCase()==ans.trim().toLowerCase()){
         return true;
     }
-    if(questions[currentQuestion].answers[2]==ans.trim().toLowerCase()){
+    if(questions[currentQuestion].answers[2].toLowerCase()==ans.trim().toLowerCase()){
         return true;
     }
     return false;
@@ -300,7 +364,7 @@ function findAnswer(){
 
 function nextQuestion(){
     if(questionNumber==10){
-        document.getElementById("question").innerHTML = "KRAJ";
+        endGame();
     }
     else{
         enterDarkMode();
@@ -341,8 +405,8 @@ function showAnswers(){
 
 function getRandomQuestionText(){
     var q = Math.floor(Math.random() * 20) + 20;
-    if(oldTextQuestions.includes(q)){
-        return getRandomQuestion();
+    if(oldQuestions.includes(q)){
+        return getRandomQuestionText();
     }
     else {
         oldQuestions.push(q);
@@ -419,6 +483,7 @@ function submited(){
         return 0;
     }
     else{
+        
         var r = document.getElementById("rules");
         var x = document.getElementById("start");
         var n = document.getElementById("formName");

@@ -10,15 +10,12 @@ fetch('questions.json').then(function(response){
 function saveResult(usr,pts){
     for(i=1;i<11;i++){
         if(localStorage.getItem("res"+i.toString())==null){
-            console.log("ovde1")
             localStorage.setItem("name"+i.toString(),usr);
             localStorage.setItem("res"+i.toString(), pts.toString());
-            console.log(i.toString()+ "   kraj prvog ifa");
             return 0;
         }
         else {
             if(parseInt(localStorage.getItem("res"+i.toString()))<pts){
-                console.log("ovde2")
                 var helpU = localStorage["name"+i.toString()] ;
                 var helpP = parseInt(localStorage.getItem("res"+i.toString()));
                 console.log(helpU);
@@ -65,27 +62,27 @@ function showLeaderboard(){
     }
 }
 
-function showEndScreen(){
-    console.log("uendskrinujesada")
+function endGame(){ //SCREEN AT THE END OF GAME
+    document.getElementById("toLeaderboard").style.display = "";
+    clearTimeout(timer);
+    saveResult(username,points);
     var f = document.getElementById("formName");
     f.style.display = "none";
     var q = document.getElementById("questions");
     q.style.display = "none";
     var l = document.getElementById("endScreen")
     l.style.display = "block";
-}
-
-function endGame(){
-    document.getElementById("toLeaderboard").style.display = "";
-    clearTimeout(timer);
-    saveResult(username,points);
-    showEndScreen();
     if(points<4){
         document.getElementById("congrats").innerHTML = "Wel... ";
         document.getElementById("playerName").innerHTML = username + " you had "
         document.getElementById("numberOfPts").innerHTML = points;
         document.getElementById("numberOfPts").style.color = "red";
-        document.getElementById("pts").innerHTML = " points..."
+        if(points==1){
+            document.getElementById("pts").innerHTML = " point..."
+        }
+        else{
+            document.getElementById("pts").innerHTML = " points..."
+        }
 
     }
     else if(points>3 && points<8){
@@ -106,7 +103,7 @@ function endGame(){
     }
 }
 
-document.getElementById("name").focus();
+document.getElementById("name").focus(); //FOCUSING AT THE FORM AT THE BEGINING
 
 var username;
 var bgDark = "#353535";
@@ -124,7 +121,7 @@ var oldQuestions = [];
 var alreadyAnswered = false;
 var countQuestions = [0,0];
 
-function askQuestion(){
+function askQuestion(){ //CHOOSING RANDOMLY ONE OF TEXT QUESTION OR QUESTION WITH ANSWERS (MAX 5 OF EACH)
     if(!mixed){
         questionNumber+=1;
     }
@@ -150,11 +147,11 @@ function askQuestion(){
     }
 }
 
-function showPoints(){
+function showPoints(){ //PRINTING POINTS
     document.getElementById("points").innerHTML = points;
 }
 
-function textAnswer(){
+function textAnswer(){ //ASKING A QUESTION WHITOUT GIVEN ANSWER
     if(alreadyAnswered){
         return null;
     }
@@ -186,7 +183,7 @@ function textAnswer(){
     }
 }
 
-function rightAnswer(){
+function rightAnswer(){ //CHECKING IF THE TYPED IN ANSWER IS CORRECT
     ans = document.forms["FormAns"]["answerInput"].value;
     if(questions[currentQuestion].answers[0].toLowerCase()==ans.trim().toLowerCase()){
         return true;
@@ -200,7 +197,7 @@ function rightAnswer(){
     return false;
 }
 
-function answered(a){
+function answered(a){ //CHECKING IF THE CLICKED GIVEN ANSWER IS CORRECT
     if(alreadyAnswered){
         return null;
     }
@@ -226,7 +223,7 @@ function answered(a){
     }
 }
 
-function findAnswer(){
+function findAnswer(){ //GREENLIGHTING THE CORRECT ANSWER
     if(document.getElementById("answer1").innerHTML == questions[currentQuestion].answers[0]){
         document.getElementById("answer1").style.backgroundColor = "green";
     }
@@ -241,7 +238,7 @@ function findAnswer(){
     }
 }
 
-function nextQuestion(){
+function nextQuestion(){ //CHECKING IF IT'S THE LAST QUESTION AND GOING TO END SCREEN AND IF NOT ASKING NEXT QUESTION
     if(questionNumber==10){
         endGame();
     }
@@ -252,7 +249,7 @@ function nextQuestion(){
     }
 }
 
-function setQuestionText(){
+function setQuestionText(){ //DISPLAYING QUESTION WITH TYPE IN ANSWER
     var ans = document.getElementById("textAnswer");
     ans.style.display = "block";
     document.getElementById("formAnswer").reset()
@@ -266,21 +263,21 @@ function setQuestionText(){
     startTimer(20);
 }
 
-function hideAnswers(){
+function hideAnswers(){ //HIDING THE GIVEN ANSWERS
     var ans1 = document.getElementById("answers12");
     ans1.style.display = "none";
     var ans2 = document.getElementById("answers34");
     ans2.style.display = "none";
 }
 
-function showAnswers(){
+function showAnswers(){ //SHOWING THE GIVEN ANSWERS
     var ans1 = document.getElementById("answers12");
     ans1.style.display = "";
     var ans2 = document.getElementById("answers34");
     ans2.style.display = "";
 }
 
-function getRandomQuestionText(){
+function getRandomQuestionText(){ //GETTING A RANDOM QUESTION WITH TYPE IN ANSWER
     var q = Math.floor(Math.random() * 20) + 20;
     if(oldQuestions.includes(q)){
         return getRandomQuestionText();
@@ -291,7 +288,7 @@ function getRandomQuestionText(){
     }
 }
 
-function setQuestion(){
+function setQuestion(){ //DISPLAYING REGULAR QUESTION
     showAnswers();
     var ans = document.getElementById("textAnswer");
     ans.style.display = "none";
@@ -302,7 +299,7 @@ function setQuestion(){
     startTimer(20);
 }
 
-function getRandomQuestion(){
+function getRandomQuestion(){ //GETTING RANDOM REGULAR QUESTION
     var q = Math.floor(Math.random() * 20);
     if(oldQuestions.includes(q)){
         return getRandomQuestion();
@@ -313,7 +310,7 @@ function getRandomQuestion(){
     }
 }
 
-function setAnswers(q){
+function setAnswers(q){ //DISPLAYING GIVEN ANSWERS AT RANDOM
     n = getRandomAnswers();
     var a = document.getElementById("answer1");
     a.innerHTML = questions[q].answers[n[0]];
@@ -325,7 +322,7 @@ function setAnswers(q){
     a.innerHTML = questions[q].answers[n[3]];
 }
 
-function getRandomAnswers(){
+function getRandomAnswers(){ //RANDOMIZING GIVEN ANSWERS
     let ans = [0, 1, 2, 3];
     ans = ans.sort(() => Math.random() - 0.5);
     return ans;
@@ -333,7 +330,7 @@ function getRandomAnswers(){
 
 var darkMode = false;
 
-function enterDarkMode(){
+function enterDarkMode(){ //ENTERING/EXITING DARK MODE
     if(darkMode){
         darkMode = false;
         var x = document.getElementsByClassName("elements");
@@ -354,7 +351,7 @@ function enterDarkMode(){
     }
 }
 
-function submited(){
+function submited(){ //SUBMITING THE PLAYER NAME
     username = document.forms["myForm"]["name"].value
     if(username.trim()==""){
         return 0;
@@ -370,7 +367,7 @@ function submited(){
     }
 }
 
-function start(){
+function start(){ //STARTING THE ACTUAL QUIZ
     var btn = document.getElementById("start");
     var q = document.getElementById("questions");
     var r = document.getElementById("rules");
@@ -382,7 +379,7 @@ function start(){
 
 var timer;
 
-function startTimer(timerLength){
+function startTimer(timerLength){ //STARTING THE NEW TIMER AND CLEARING THE PREVIOUS ONE
     clearTimeout(timer);
     p = document.getElementById("timer");
     p.className = "timer elements";
@@ -414,7 +411,7 @@ function startTimer(timerLength){
 }
 
 
-function darkenAnswer(x){
+function darkenAnswer(x){  //DARKENING THE ANSWER WHEN HOVERED
     if(alreadyAnswered){
         return null;
     }
@@ -428,7 +425,7 @@ function darkenAnswer(x){
     }
 }
 
-function backAnswer(x){
+function backAnswer(x){ //REVERSING THE ANSWER BACK
     if(alreadyAnswered){
         return null;
     }
@@ -442,10 +439,9 @@ function backAnswer(x){
     }
 }
 
-var br = 0;
-var mixed = false;
+var mixed = false; //IF THE HELP HAS BEEN USED
 
-function mixQuestion(){
+function mixQuestion(){ //USING THE HELP TO SWITCH THE QUESTION
     if(alreadyAnswered){
         return null;
     }
@@ -460,8 +456,4 @@ function mixQuestion(){
             d.className = "help1"
         }
     }
-}
-
-function dark() {
-    x = document.getElementsByTagName("BODY")[0].className = "dark";
 }

@@ -1,169 +1,12 @@
-var questions =
-[
-    {
-        "question":"Which country has the longest coastline?",
-        "answers":["Canada","Indonesia","Norway","Grece"]
-    },
-    {
-        "question":"In what year was the first-ever Wimbledon Championship held?",
-        "answers":["1877","1893","1922","1903"]
-    },
-    {
-        "question":"What does “HTTP” stand for?",
-        "answers":["HyperText Transfer Protocol","HybridText Technology Protocol","HybridText Transfer Protocol","HyperText Technology Protocol"]
-    },
-    {
-        "question":"What part of the atom has no electric charge?",
-        "answers":["Neutron","Electron","Proton","Photon"]
-    },
-    {
-        "question":"Which animal can be seen on the Porsche logo?",
-        "answers":["Horse","Bull","Wolf","Cheetah"]
-    },
-    {
-        "question":"Which country produces the most coffee in the world?",
-        "answers":["Brazil","Vietnam","Colombia","Indonesia"]
-    },
-    {
-        "question":"What is your body’s largest organ?",
-        "answers":["Skin","Colon","Lungs","Brain"]
-    },
-    {
-        "question":"Oktoberfest in Germany is celebrated with what drink?",
-        "answers":["Beer","Wine","Whiskey","Hot Chocolate"]
-    },
-    {
-        "question":"Which country did AC/DC originate in?",
-        "answers":["Australia","England","America","Ireland"]
-    },
-    {
-        "question":"What animal is on Lacoste's logo?",
-        "answers":["Crocodile","Horse","Puma","Frog"]
-    },
-    {
-        "question":"“Adventure of Sherlock Holmes” was written by which writer?",
-        "answers":["Arthur Conan Doyle","JK Rowling","Stephen King","Mark Twain"]
-    },
-    {
-        "question":"How many films did Sean Connery play James Bond in?",
-        "answers":["7","3","5","1"]
-    },
-    {
-        "question":"Who played Wolverine?",
-        "answers":["Hugh Jackman","Christian Bale","Jared Leto","Chris Evans"]
-    },
-    {
-        "question":"How long is the gestation period of an African elephant?",
-        "answers":["22 months","9 months","14 months","18 months"]
-    },
-    {
-        "question":"How many stripes does Adidas have?",
-        "answers":["3","2","4","5"]
-    },
-    {
-        "question":"How many Pyramids of Giza were made?",
-        "answers":["3","2","4","5"]
-    },
-    {
-        "question":"What was the name of the Egyptian God of the Sun?",
-        "answers":["Ra","Osiris","Re","Anubis"]
-    },
-    {
-        "question":"The video game “Happy Feet” features what animals?",
-        "answers":["Penguins","Cats","Dogs","Goats"]
-    },
-    {
-        "question":"Where does Buddhism fall in a ranking of the world’s largest religion?",
-        "answers":["5.","4.","3.","1."]
-    },
-    {
-        "question":"What is the tallest building in the world?",
-        "answers":["Burj Khalifa","Shanghai Tower","Taipei 101","Empire State Building"]
-    },
-    {
-        "question":"How many NBA titles did Michael Jordan win?",
-        "answers":["6","6","six"]
-    },
-    {
-        "question":"How many bytes are in a kilobyte?",
-        "answers":["1024","1024","1024"]
-    },
-    {
-        "question":"What is the symbol of gold in the periodic table of elements?",
-        "answers":["Au","Au","Au"]
-    },
-    {
-        "question":"What car manifactured by Zastava was imported to American market?",
-        "answers":["Yugo","Yugo Koral","Koral"]
-    },
-    {
-        "question":"Which country invented tea?",
-        "answers":["China","China","China"]
-    },
-    {
-        "question":"Which organ has four chambers?",
-        "answers":["heart","heart","the heart"]
-    },
-    {
-        "question":"What is the name of Batman's sidekick?",
-        "answers":["Robin","Robin","Robin"]
-    },
-    {
-        "question":"What is the name of the world’s longest river?",
-        "answers":["Nile","Nile","the Nile"]
-    },
-    {
-        "question":"Mahatma Gandi’s birthday is a national holiday in which country?",
-        "answers":["India","India","India"]
-    },
-    {
-        "question":"What is the name of the song with the most views on YouTube?",
-        "answers":["Despacito","Despacito","Despacito"]
-    },
-    {
-        "question":"The fashion designer, Gianni Versace, came from which country?",
-        "answers":["Italy","Italy","Italy"]
-    },
-    {
-        "question":"How many Lord of the Rings films are there?",
-        "answers":["3","3","3"]
-    },
-    {
-        "question":"Which popular TV show featured house Targaryen and Stark?",
-        "answers":["Game Of Thrones","GOT","Game Of Thrones"]
-    },
-    {
-        "question":"How many NBA championships do the Boston Celtics have?",
-        "answers":["17","17","seventeen"]
-    },
-    {
-        "question":"How many legs do spiders have?",
-        "answers":["8","8","eight"]
-    },
-    {
-        "question":"In what year did Steve Jobs die?",
-        "answers":["2011","2011","2011"]
-    },
-    {
-        "question":"In which year World War I end?",
-        "answers":["1918","1918","1918"]
-    },
-    {
-        "question":"Thor was the son of which God?",
-        "answers":["Odin","Odin","Odin"]
-    },
-    {
-        "question":"How many cards are there in a standard deck of cards?",
-        "answers":["52","52","fifty-two"]
-    },
-    {
-        "question":"How many main characters are there in a popular TV show Seinfeld?",
-        "answers":["4","4","four"]
-    }
-];
+var questions;
+
+fetch('questions.json').then(function(response){
+    return response.json();
+}).then(function(obj){
+    questions = obj;
+});
 
 // Saving to localStorage
-
 function saveResult(usr,pts){
     for(i=1;i<11;i++){
         if(localStorage.getItem("res"+i.toString())==null){
@@ -186,7 +29,7 @@ function saveResult(usr,pts){
                 usr = helpU;
             }
             else if(parseInt(localStorage.getItem("res"+i.toString()))==pts){
-                if(localStorage.getItem("name"+i.toString())>usr){
+                if(localStorage.getItem("name"+i.toString()).toLowerCase()>usr.toLowerCase()){
                     var helpU = localStorage["name"+i.toString()] ;
                     var helpP = parseInt(localStorage.getItem("res"+i.toString()));
                     console.log(helpU);
@@ -197,32 +40,70 @@ function saveResult(usr,pts){
                     usr = helpU;
                 }
             }
-        
         }
     }
     return 0
 }
-
 // #################
 
 function showLeaderboard(){
+    document.getElementById("toLeaderboard").style.display = "none";
+    document.getElementById("startAgain").style.display = "";
     var f = document.getElementById("formName");
     f.style.display = "none";
-    var q = document.getElementById("questions");
+    var q = document.getElementById("endScreen");
     q.style.display = "none";
     var l = document.getElementById("leaderboard")
     l.style.display = "block";
     for(var i=1 ; i<11 ; i++){
-        var u = document.getElementById("u"+i.toString());
-        u.innerText = localStorage["name"+i.toString()];
-        var kkk = document.getElementById("result"+i.toString());
-        kkk.innerHTML = localStorage["res"+i.toString()];
+        if(localStorage["name"+i.toString()]!=undefined){
+            var u = document.getElementById("u"+i.toString());
+            u.innerText = localStorage["name"+i.toString()];
+            var kkk = document.getElementById("result"+i.toString());
+            kkk.innerHTML = localStorage["res"+i.toString()];
+        }
     }
 }
 
+function showEndScreen(){
+    console.log("uendskrinujesada")
+    var f = document.getElementById("formName");
+    f.style.display = "none";
+    var q = document.getElementById("questions");
+    q.style.display = "none";
+    var l = document.getElementById("endScreen")
+    l.style.display = "block";
+}
+
 function endGame(){
+    document.getElementById("toLeaderboard").style.display = "";
+    clearTimeout(timer);
     saveResult(username,points);
-    showLeaderboard();
+    showEndScreen();
+    if(points<4){
+        document.getElementById("congrats").innerHTML = "Wel... ";
+        document.getElementById("playerName").innerHTML = username + " you had "
+        document.getElementById("numberOfPts").innerHTML = points;
+        document.getElementById("numberOfPts").style.color = "red";
+        document.getElementById("pts").innerHTML = " points..."
+
+    }
+    else if(points>3 && points<8){
+        document.getElementById("congrats").innerHTML = "Congratulations ";
+        document.getElementById("playerName").innerHTML = username + " you had "
+        document.getElementById("numberOfPts").innerHTML = points;
+        document.getElementById("numberOfPts").style.color = "blue";
+        document.getElementById("pts").innerHTML = " points"
+
+    }
+    else if(points>7){
+        document.getElementById("congrats").innerHTML = "WOW ";
+        document.getElementById("playerName").innerHTML = username + " you had "
+        document.getElementById("numberOfPts").innerHTML = points;
+        document.getElementById("numberOfPts").style.color = "green";
+        document.getElementById("pts").innerHTML = " points!"
+
+    }
 }
 
 document.getElementById("name").focus();
@@ -242,8 +123,6 @@ var points = 0;
 var oldQuestions = [];
 var alreadyAnswered = false;
 var countQuestions = [0,0];
-
-
 
 function askQuestion(){
     if(!mixed){
@@ -371,9 +250,7 @@ function nextQuestion(){
         enterDarkMode();
         askQuestion();
     }
-
 }
-
 
 function setQuestionText(){
     var ans = document.getElementById("textAnswer");
@@ -449,9 +326,9 @@ function setAnswers(q){
 }
 
 function getRandomAnswers(){
-    let ans = [0, 1, 2, 3]
-    ans = ans.sort(() => Math.random() - 0.5)
-    return ans
+    let ans = [0, 1, 2, 3];
+    ans = ans.sort(() => Math.random() - 0.5);
+    return ans;
 }
 
 var darkMode = false;

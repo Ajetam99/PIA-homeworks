@@ -88,16 +88,16 @@
         "answers":["1024","1024","1024"]
     },
     {
-        "question":"What is the symbol og gold in the periodic table of elements?",
-        "answers":["au","au","au"]
+        "question":"What is the symbol of gold in the periodic table of elements?",
+        "answers":["Au","Au","Au"]
     },
     {
         "question":"What car manifactured by Zastava was imported to American market?",
-        "answers":["yugo","yugo koral","koral"]
+        "answers":["Yugo","Yugo Koral","Koral"]
     },
     {
         "question":"Which country invented tea?",
-        "answers":["china","china","china"]
+        "answers":["China","China","China"]
     },
     {
         "question":"Which organ has four chambers?",
@@ -105,23 +105,23 @@
     },
     {
         "question":"What is the name of Batman's sidekick?",
-        "answers":["robin","robin","robin"]
+        "answers":["Robin","Robin","Robin"]
     },
     {
         "question":"What is the name of the world’s longest river?",
-        "answers":["nile","nile","the nile"]
+        "answers":["Nile","Nile","the Nile"]
     },
     {
         "question":"Mahatma Gandi’s birthday is a national holiday in which country?",
-        "answers":["india","india","india"]
+        "answers":["India","India","India"]
     },
     {
         "question":"What is the name of the song with the most views on YouTube?",
-        "answers":["despacito","despacito","despacito"]
+        "answers":["Despacito","Despacito","Despacito"]
     },
     {
         "question":"The fashion designer, Gianni Versace, came from which country?",
-        "answers":["italy","italy","italy"]
+        "answers":["Italy","Italy","Italy"]
     },
     {
         "question":"How many Lord of the Rings films are there?",
@@ -129,7 +129,7 @@
     },
     {
         "question":"Which popular TV show featured house Targaryen and Stark?",
-        "answers":["got","got","game of thrones"]
+        "answers":["Game Of Thrones","GOT","Game Of Thrones"]
     },
     {
         "question":"How many NBA championships do the Boston Celtics have?",
@@ -149,14 +149,14 @@
     },
     {
         "question":"Thor was the son of which God?",
-        "answers":["odin","odin","odin"]
+        "answers":["Odin","Odin","Odin"]
     },
     {
         "question":"How many cards are there in a standard deck of cards?",
         "answers":["52","52","fifty-two"]
     },
     {
-        "question":"How many characters are there in a popular TV show Seinfeld?",
+        "question":"How many main characters are there in a popular TV show Seinfeld?",
         "answers":["4","4","four"]
     }
 ]

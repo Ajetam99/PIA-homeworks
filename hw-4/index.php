@@ -1,6 +1,8 @@
+<?php
+    include_once 'includes/dbh.php';
+ ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8">
     <title>Log in</title>
@@ -14,7 +16,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head>
-
 <body>
     <div>
         <label class="switch">
@@ -25,21 +26,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <form class="box">
+                <form class="box" action="index.php" method="post">
                     <h1>Login</h1>
-                    <p class="text-muted"> Please enter your username and password!</p> 
-                    <input type="text" name="" placeholder="Username"> 
-                    <input type="password" name="" placeholder="Password"> 
-                    <a class="forgot text-muted" href="sign_in.php">Create new account</a> 
-                    <input type="submit" name="" value="Login" href="#">
-                    
+                    <p class="text-muted"> Please enter your username and password!</p>
+                    <input type="text" name="username" placeholder="Username">
+                    <input type="password" name="password" placeholder="Password">
+                    <a class="forgot text-muted" href="sign_in.php">Create new account</a>
+                    <input type="submit" value="Login">
+
                 </form>
             </div>
         </div>
     </div>
     <!-- linear-gradient(to right, #000000, #ffffff); -->
+
     <script type="text/javascript" src="script.js"></script>
 </body>
-
-
 </html>

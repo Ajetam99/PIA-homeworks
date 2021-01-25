@@ -38,6 +38,23 @@
                     <input type="submit" name="sub" value="Sign in">
 
                 </form>
+                <?php
+                    if(isset($_GET["error"])){
+                        if($_GET["error"]=="emptyinput"){
+                            $message = "Empty input!";
+                            echo "<script type='text/javascript'>alert('$message');</script>";
+                        }
+                        if($_GET["error"]=="invalidpwd"){
+                            $message = "Password too short! It needs to have more than 5 characters!";
+                            echo "<script type='text/javascript'>alert('$message');</script>";
+                        }
+                        if($_GET["error"]=="uidtaken"){
+                            $message = "Username or password already taken!";
+                            echo "<script type='text/javascript'>alert('$message');</script>";
+                        }
+                    }
+                ?>
+
             </div>
         </div>
     </div>

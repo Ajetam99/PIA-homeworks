@@ -6,6 +6,8 @@
     $plot = str_replace('"','\"',$plot);
     $genres = $_POST['genres'];
     $title = $_POST['title'];
+    $title = str_replace("'","\'",$title);
+    $title = str_replace('"','\"',$title);
     $poster = $_POST['poster'];
     $length = $_POST['length'];
     $year = $_POST['year'];
@@ -17,4 +19,4 @@
 
     $sql = "INSERT INTO movies (title,poster,length,yr,director,writter,production,cast,plot,genres) VALUES ('$title','$poster','$length','$year','$director','$writter','$production','$cast','$plot','$genres');";
     mysqli_query($conn, $sql);
-    // header("Location: ../movie.php");
+    header("Location: ../index.php");

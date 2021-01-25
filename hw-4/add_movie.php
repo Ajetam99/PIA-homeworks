@@ -1,3 +1,11 @@
+<?php
+if(session_status()!==2){
+    header("Location: log_in.php");
+}
+else{
+    include_once 'includes/dbh.php';
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -14,11 +22,40 @@
 
 </head>
 <body>
-    <div>
-        <label class="switch">
-            <input type="checkbox">
-            <span id="mode" class="slider round" onclick="darkMode()"></span>
-        </label>
+<div class="d-flex justify-content-around">
+        <div>
+            <label class="switch">
+                <input type="checkbox">
+                <span id="mode" class="slider round" onclick="darkMode()"></span>
+            </label>
+        </div>
+
+        <div class="d-flex justify-content-center align-self-center">
+            <form class="form-inline" action="/action_page.php">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+            <div style="width: 30px;"></div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    All genres
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                $username
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="includes/logout.php">Log out?</a>
+            </div>
+        </div>
     </div>
     <div class="container">
         <div class="row">

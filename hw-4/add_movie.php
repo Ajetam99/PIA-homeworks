@@ -1,10 +1,5 @@
 <?php
-if(session_status()!==2){
-    header("Location: log_in.php");
-}
-else{
     include_once 'includes/dbh.php';
-}
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -69,7 +64,7 @@ else{
                     <input type="text" name="poster" placeholder="Poster link">
                     <input type="text" name="length" placeholder="Length">
                     <input type="text" name="year" placeholder="Year">
-                    <input type="text" name="genres" placeholder="Genres (separated by space)">
+                    <input type="text" name="genres" placeholder="Genres (separated by a comma)">
                     <input type="text" name="director" placeholder="Director">
                     </div class="">
                     <div>

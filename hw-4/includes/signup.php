@@ -43,6 +43,11 @@
         $sql = "INSERT INTO users (email,fName,lName,username,pswd,admin) VALUES ('$email','$first','$last','$uid','$pwd',false);";
         mysqli_query($conn, $sql);
         $_SESSION['username'] = $uid;
+        $sql = "SELECT * FROM users WHERE username='$uid'";
+        $result = mysqli_query($conn, $sql);
+        $data = mysqli_fetch_assoc($result);
+        $_SESSION['id'] = $data['id'];
+        $_SESSION['admin'] = false;
         header("Location: ../index.php");
     }
     

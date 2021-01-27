@@ -1,8 +1,8 @@
 <?php
     include_once 'includes/dbh.php';
-
-    $myUsername = $currentUser;
-    $sql = "SELECT * FROM movies ORDER BY id DESC";
+    
+    $search = $_GET['search'];
+    $sql = "SELECT * FROM movies WHERE genres LIKE '%$search%'";
     $result = mysqli_query($conn,$sql);
     $mID = [];
     $mName = [];
@@ -18,7 +18,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <title>New Movies</title>
+    <title><?php echo $search; ?></title>
     <link rel="icon" href="images/site_icon.png">
 
     <meta name="viewport" content="width=device-width">
@@ -84,49 +84,35 @@
     <div id="backGR" class="container">
         <div class="row-vertical">
             <div style="height: 20px;"></div>
-            <div class="d-flex justify-content-around">
-                <div class="order-md-4 posters align-self-center">
-                    <a href="movie.php?currentMovie=<?php echo $mID[0]; ?>">
-                    <img class="moviesMain" src="<?php echo $mPoster[0]; ?>"> 
-                    </a>
-                </div>
-                <div class="order-md-4 posters align-self-center">
-                    <a href="movie.php?currentMovie=<?php echo $mID[1]; ?>">
-                    <img class="moviesMain" src="<?php echo $mPoster[1]; ?>"> 
-                    </a>               
-                </div>
-                <div class="order-md-4 posters align-self-center">
-                    <a href="movie.php?currentMovie=<?php echo $mID[2]; ?>">
-                    <img class="moviesMain" src="<?php echo $mPoster[2]; ?>"> 
-                    </a>                
-                </div>
-            </div>
-            <div class="d-flex justify-content-around">
-                <div class="order-md-4 posters align-self-center">
-                    <a href="movie.php?currentMovie=<?php echo $mID[3]; ?>">
-                    <img class="moviesMain" src="<?php echo $mPoster[3]; ?>"> 
-                    </a>
-                </div>
-                <div class="order-md-4 posters align-self-center">
-                    <a href="movie.php?currentMovie=<?php echo $mID[4]; ?>">
-                    <img class="moviesMain" src="<?php echo $mPoster[4]; ?>"> 
-                    </a>                </div>
-                <div class="order-md-4 posters align-self-center">
-                    <a href="movie.php?currentMovie=<?php echo $mID[5]; ?>">
-                    <img class="moviesMain" src="<?php echo $mPoster[5]; ?>"> 
-                    </a>                
-                </div>
-            </div>
+
+            <?php 
+                $rows = ceil(count($mID)/3);
+                $last = count($mID)%3;  
+                $mNum = 0; 
+                $i = 0;         
+                while($i<$rows){
+                    $j = 0;
+                    echo '<div class="d-flex justify-content-around">';
+                    while($j<3){
+                        echo '<div class="order-md-4 posters align-self-center">';
+                        if($mNum<count($mID)){
+                            echo '<a href="movie.php?currentMovie=';
+                            echo $mID[$mNum];
+                            echo '"><img class="moviesMain" src="';
+                            echo $mPoster[$mNum];
+                            echo '"></a>';
+                        }
+                        echo '</div>';
+                        $mNum++;
+                        $j++;
+                    }
+                    echo '</div>';
+                    $i++;
+                }
+            ?>
 
         </div>
     </div>
-
-    <?php
-
-     ?>
-
-
-
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

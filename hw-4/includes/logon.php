@@ -17,7 +17,6 @@
         $_SESSION['id'] = $data['id'];
         $_SESSION['admin'] = $data['admin'];
         header("Location: ../index.php");
-
     }
     else{
         header("Location: ../log_in.php?error=wrong");

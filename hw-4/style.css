@@ -4,7 +4,6 @@ body {
     font-family: sans-serif;
     /* background: #191919; */
     background: #8d99ae;
-    overflow-y: hidden;
 }
 /* ************************************ Log/Sign in ************************************ */
 .box {
@@ -158,11 +157,12 @@ input:checked + .slider:before {
 #title{
     text-shadow: 0.5vw 0.5vw black;
     font-family: sans-serif;
-    font-size: 5vw;
+    font-size: 3vw;
     font-weight: bolder;
     color: white;
     text-align: center;
     word-wrap: normal;
+    line-height: 110%;
 }
 
 #poster {
@@ -232,8 +232,13 @@ input:checked + .slider:before {
 }
 
 .posters img {
+    
     width: 100%;
-    height: auto;
+    height: 100%;
+}
+
+.posters {
+    width: calc(100%/3);
 }
 
 /* ************************************ x ************************************ */

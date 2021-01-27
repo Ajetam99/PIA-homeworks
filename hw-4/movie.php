@@ -1,8 +1,4 @@
 <?php
-if(session_status()!==2){
-    header("Location: log_in.php");
-}
-else{
     include_once 'includes/dbh.php';
 
     $movie = 25;
@@ -21,7 +17,6 @@ else{
     $cast = $data['cast'];
     $plot = $data['plot'];
     $genres = $data['genres'];
-}
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

@@ -33,12 +33,11 @@
                     <input type="password" name="password" placeholder="Password">
                     <a class="forgot text-muted" href="sign_in.php">Create new account</a>
                     <input type="submit" value="Login">
-
+                    <p style="color: red;font-size: 20px;"><?php if(isset($_GET["error"]))echo "Username or password incorrect!";?></p>
                 </form>
             </div>
         </div>
     </div>
-    <!-- linear-gradient(to right, #000000, #ffffff); -->
 
     <script type="text/javascript" src="script.js"></script>
 </body>

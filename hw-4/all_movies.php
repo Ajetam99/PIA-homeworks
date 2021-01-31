@@ -1,46 +1,23 @@
 <?php
     include_once 'includes/dbh.php';
-
-    $movie = 25;
-    $movie = $_GET['currentMovie'];
-
-    $sql = "SELECT * FROM movies WHERE id='$movie'";
+    
+    $sql = "SELECT * FROM movies ORDER BY id DESC";
     $result = mysqli_query($conn,$sql);
-    $data = mysqli_fetch_assoc($result);
-    $title = $data['title'];
-    $poster = $data['poster'];
-    $len = $data['length'];
-    $year = $data['yr'];
-    $director = $data['director'];
-    $writter = $data['writter'];
-    $production = $data['production'];
-    $cast = $data['cast'];
-    $plot = $data['plot'];
-    $genres = $data['genres'];
-
-    $sql = "SELECT * FROM reviews WHERE movieID=$movie ORDER BY id ASC";
-    $result = mysqli_query($conn,$sql);
-    $reviews = [];
-    $myReview = "";
+    $mID = [];
+    $mName = [];
+    $mPoster = [];
     while($data = mysqli_fetch_assoc($result)){
-        $reviews[] = $data['review'];
-        if($data['userID']==$_SESSION['id']){
-            $myReview = $data['review'];
-        }
+        $mID[] = $data['id'];
+        $mName[] = $data['title'];
+        $mPoster[] = $data['poster'];
     }
-    if(count($reviews)==0){
-        $average="";
-    }
-    else{
-    $average = array_sum($reviews)/count($reviews);
-    $average = round($average, 1);
-    }
+
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <title><?php echo $title; ?></title>
+    <title>All movies</title>
     <link rel="icon" href="images/site_icon.png">
 
     <meta name="viewport" content="width=device-width">
@@ -101,57 +78,41 @@
                 <a class="dropdown-item" href="includes/logout.php">Log out</a>
                 <a class="dropdown-item" href="add_movie.php" <?php if(!$_SESSION['admin']){echo 'style="display:none;"';} ?>>Add a movie</a>
                 <a class="dropdown-item" href="all_movies.php" <?php if(!$_SESSION['admin']){echo 'style="display:none;"';} ?>>All movies</a>
-                <a class="dropdown-item" href="<?php echo "add_movie.php?plot=$plot&genres=$genres&title=$title&poster=$poster&length=$len&year=$year&director=$director&writter=$writter&production=$production&cast=$cast&id=$movie"; ?>" <?php if(!$_SESSION['admin']){echo 'style="display:none;"';} ?>>Edit this movie</a>
-                <a class="dropdown-item" href="includes/delete_movie.php" action="<?php $_SESSION['mid'] = $movie; ?>" style="color:red;">Delete this movie</a>
             </div>
         </div>
     </div>
     <div id="backGR" class="container">
         <div class="row-vertical">
-            <div class="titleBar">
-                <p id="title"><?php echo $title; ?></p>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <img id="poster" src="<?php echo $poster; ?>">
-                    <div id="ratingzz" class="d-flex justify-content-between">
-                        <div class="d-flex justify-content-start">
-                            <div class="col star" id="overallStar"> <img id="ovstar" src="images/star.png"> </div>
-                            <div class="col rating"> <span id="ratingAverage"><?php echo $average; ?></span> </div>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <div class="col star" id="myStar" onclick="openForm()"> <img id="ovstar" src="images/star_yellow.png"> </div>
-                            <div class="form-popup" id="myForm">
-                                <form method="post" action="includes/review_movie.php<?php $_SESSION['mid'] = $movie; ?>" class="form-container">
-                                    <h1><?php echo $title; ?></h1>
+            <div style="height: 20px;"></div>
 
-                                    <input type="number" name="review" min="1" max="10" required>
-
-                                    <button type="submit" class="btn">Confirm</button>
-                                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                                </form>
-                            </div>
-                            <div class="col rating"> <span id="myRating"><?php echo $myReview; ?></span> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8" id="details">
-                  <div id="detailsText">
-                    <p class="movieInfo">Length: <span class="movieInfoText"><?php echo "$len min"; ?></span></p>
-                    <p class="movieInfo">Year: <span class="movieInfoText"><?php echo $year; ?></span> </p>
-                    <p class="movieInfo">Genres: <span class="movieInfoText"><?php echo $genres; ?></span> </p>
-                    <p class="movieInfo">Director: <span class="movieInfoText"><?php echo $director; ?></span> </p>
-                    <p class="movieInfo">Writter: <span class="movieInfoText"><?php echo $writter; ?></span> </p>
-                    <p class="movieInfo">Production Company: <span class="movieInfoText"><?php echo $production; ?></span> </p>
-                    <p class="movieInfo">Cast: <span class="movieInfoText"><?php echo $cast; ?></span> </p>
-                    <p class="movieInfo">Plot: <span class="movieInfoText"><?php echo $plot; ?></span> </p>
-                  </div>
-                </div>
-            </div>
+            <?php 
+                $rows = ceil(count($mID)/3);
+                $last = count($mID)%3;  
+                $mNum = 0; 
+                $i = 0;         
+                while($i<$rows){
+                    $j = 0;
+                    echo '<div class="d-flex justify-content-around">';
+                    while($j<3){
+                        echo '<div class="order-md-4 posters align-self-center">';
+                        if($mNum<count($mID)){
+                            echo '<a href="movie.php?currentMovie=';
+                            echo $mID[$mNum];
+                            echo '"><img class="moviesMain" src="';
+                            echo $mPoster[$mNum];
+                            echo '"></a>';
+                        }
+                        echo '</div>';
+                        $mNum++;
+                        $j++;
+                    }
+                    echo '</div>';
+                    $i++;
+                }
+            ?>
 
         </div>
     </div>
-
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

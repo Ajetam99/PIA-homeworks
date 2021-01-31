@@ -76,8 +76,9 @@
                 <?php echo $_SESSION['username']; ?>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="includes/logout.php">Log out?</a>
-                <a class="dropdown-item" href="add_movie.php" <?php if(!$_SESSION['admin']){echo 'style="display:none;"';} ?>>add a movie</a>
+                <a class="dropdown-item" href="includes/logout.php">Log out</a>
+                <a class="dropdown-item" href="add_movie.php" <?php if(!$_SESSION['admin']){echo 'style="display:none;"';} ?>>Add a movie</a>
+                <a class="dropdown-item" href="all_movies.php" <?php if(!$_SESSION['admin']){echo 'style="display:none;"';} ?>>All movies</a>
             </div>
         </div>
     </div>
